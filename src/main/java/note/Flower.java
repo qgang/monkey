@@ -1,39 +1,54 @@
-package hw;
+package note;
 
-/**
- * 输入：一个正整数N
- * 要求：英文表达式
- * 例子：输入1，输出one；输入12，输出twelve；输入135，输出one hundred thirty five
- */
 import java.util.Scanner;
 
-public class Main {
+//水仙花数
+public class Flower {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        String str = scan.next();
-        System.out.println(fun(str));
+        int m = 0;
+        int n = 0;
+        while (scan.hasNext()) {
+            m = scan.nextInt();
+            n = scan.nextInt();
+            System.out.println(fun(m, n));
+        }
     }
 
-    public static int fun(String str) {
-        char[] strs = str.toCharArray();
-        char[] newStr = new char[strs.length];
-        for (int i = 0; i < strs.length; i++) {
-            if (strs[i] >= '0' && strs[i] <= '9') {
-                newStr[i] = strs[i];
-            } else {
-                newStr[i] = ' ';
+    public static String fun(int m, int n) {
+        String result = "";
+        if (m > n) {
+            result = "no";
+        } else {
+            int count = 0;
+            for (; m <= n; m++) {
+                if (isFlower(m)) {
+                    result += m + " ";
+                    count++;
+                }
+            }
+            if (count == 0) {
+                result += "no";
             }
         }
+        return result.trim();
+    }
 
-        String numtemp = String.copyValueOf(newStr).trim();
-        String[] numstr = numtemp.split("\\s");
-        Integer sum = 0;
-        for (int i = 0; i < numstr.length; i++) {
-            sum += Integer.parseInt(numstr[i]);
+    private static boolean isFlower(int m) {
+        char[] numbers = new Integer(m).toString().toCharArray();
+        int sum = 0;
+        int temp = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            temp = numbers[i] - '0';
+            sum += temp * temp * temp;
         }
 
-        return sum;
+        if (m == sum) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -67,7 +82,7 @@ public class Main{
     private static int[] getArray(String[] names) {
         int[] array = new int[26];
         for (int i = 0; i < names.length; i++) {
-            
+
         }
         return new int[0];
     }

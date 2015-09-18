@@ -1,7 +1,7 @@
 package Util;
 
-import java.net.Inet4Address;
-import java.net.UnknownHostException;
+import java.net.*;
+import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +19,35 @@ public class IPV4Util {
             e.printStackTrace();
             return "0.0.0.0";
         }
+    }
+
+    /**
+     * 获取本机IP,多网卡
+     */
+    private static String getLocalIpAddress(){
+        String localIpAddress = "0.0.0.0";
+        Enumeration<NetworkInterface> networkInterfaces = null;
+        try {
+            networkInterfaces = NetworkInterface.getNetworkInterfaces();
+        } catch (SocketException e) {
+            return localIpAddress;
+        }
+
+        while(networkInterfaces.hasMoreElements()){
+            NetworkInterface element = networkInterfaces.nextElement();
+            Enumeration<InetAddress> addresses = element.getInetAddresses();
+            while (addresses.hasMoreElements()){
+                InetAddress ip = addresses.nextElement();
+
+                if (ip instanceof Inet4Address){
+                    if (ip.isSiteLocalAddress()){
+                        localIpAddress = ip.getHostAddress();
+                        break;
+                    }
+                }
+            }
+        }
+        return localIpAddress;
     }
 
     /**
@@ -72,5 +101,10 @@ public class IPV4Util {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(ip);
         return matcher.matches();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(iP2Int("0.0.0.0"));
+        System.out.println(int2IP(-1062677115));
     }
 }
