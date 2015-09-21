@@ -1,4 +1,4 @@
-package note;
+package hw;
 
 import java.util.Scanner;
 

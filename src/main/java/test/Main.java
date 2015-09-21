@@ -1,97 +1,95 @@
-package hw;
+package test;
 
 /**
- * Created by gang.qin on 2015/9/19.
- * 考点：两个区间有重叠
+ * Created by gang.qin on 2015/9/21.
+ * 考点：检测死锁
  */
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int p = scan.nextInt();
-        int q = scan.nextInt();
-        int r = scan.nextInt();
-        int l = scan.nextInt();
-        point[] pn = new point[p];
-        point[] qn = new point[q];
-        for (int i = 0; i < p; i++) {
-            point pi = new point(scan.nextInt(), scan.nextInt());
-            pn[i] = pi;
-        }
-        for (int i = 0; i < q; i++) {
-            point qi = new point(scan.nextInt(), scan.nextInt());
-            qn[i] = qi;
-        }
-        System.out.println(fun(p, q, r, l, pn, qn));
-    }
 
-    public static int fun(int p, int q, int r, int l, point[] pn, point[] qn) {
-        int count = 0;
-        for (int t = l; t <= r; t++) {
-            point[] qnt = getQnt(t, qn);
-            if (isCanChat(pn, qnt)) {
-                count++;
+        //数据输入
+        int n = Integer.parseInt(scan.nextLine());
+        String line = null;
+        List<ProcessInfo> pos = new ArrayList<ProcessInfo>();
+        for (int i = 0; i < n; i++) {
+            line = scan.nextLine();
+            String[] strs = line.split("\t");
+            ProcessInfo po = new ProcessInfo();
+            po.id = Integer.parseInt(strs[0]);
+            if (!" ".equals(strs[1])) {
+                List hasLockedId = new ArrayList();
+                String[] lockedIds = strs[1].split(" ");
+                for (int j = 0; j < lockedIds.length; j++) {
+                    hasLockedId.add(Integer.parseInt(lockedIds[j]));
+                }
+                po.hasLockedId = hasLockedId;
             }
+            if (!" ".equals(strs[2])) {
+                po.needLockedId = Integer.parseInt(strs[2]);
+            }
+            pos.add(po);
         }
-        return count;
+
+        //结果输出
+        System.out.println(lookup(pos));
     }
 
-    //已知t,求出小菇的在线时间区间
-    public static point[] getQnt(int t, point[] qn) {
-        point[] qnt = new point[qn.length];
-        for (int i = 0; i < qn.length; i++) {
-            qnt[i] = new point(qn[i].x + t, qn[i].y + t);
-        }
-        return qnt;
-    }
-
-    //判断小蘑和小菇能否聊天
-    public static boolean isCanChat(point[] pn, point[] pnt) {
-        for (int i = 0; i < pn.length; i++) {
-            for (int j = 0; j < pnt.length; j++) {
-                if (hasSame(pn[i], pnt[j])) {
-                    return true;
+    //查找形成死锁的环的个数
+    private static int lookup(List<ProcessInfo> pos) {
+        Set<String> cycle = new HashSet<String>();
+        for (ProcessInfo po : pos) {
+            if (po.needLockedId != null) {
+                String cycleIds = getCycleIds(po, pos);
+                if (cycleIds != null) {
+                    cycle.add(cycleIds);
                 }
             }
         }
-        return false;
+        return cycle.size();
     }
 
-    //判断两个区间是否相交
-    public static boolean hasSame(point p1, point p2) {
-        int x = getMax(p1.x, p2.x);
-        int y = getMin(p1.y, p2.y);
-        if (x <= y) {
-            return true;
-        } else {
-            return false;
+    //从某个进程开始，若存在死锁，返回形成死锁的进程id列表（按id从小到大排序）
+    private static String getCycleIds(ProcessInfo po, List<ProcessInfo> pos) {
+        List<Integer> ids = new ArrayList<Integer>();
+        ids.add(po.id);
+        ProcessInfo next = getNext(po, pos);
+        while (next != null && po.id != next.id) {
+            ids.add(next.id);
+            next = getNext(next, pos);
         }
+
+        if (next == null) {
+            return null;
+        }
+
+        Collections.sort(ids);
+        for (Integer id : ids) {
+
+        }
+        return ids.toString();
     }
 
-    //求两个数的最大值
-    public static int getMax(int x, int y) {
-        return x > y ? x : y;
-    }
-
-    //求两个数的最小值
-    public static int getMin(int x, int y) {
-        return x > y ? y : x;
+    //查找某个进程需要的锁id已被哪个经常所持有，返回进程信息，否则返回null
+    private static ProcessInfo getNext(ProcessInfo po, List<ProcessInfo> pos) {
+        for (ProcessInfo index : pos) {
+            List<Integer> hasLockedId = index.hasLockedId;
+            if (hasLockedId != null && hasLockedId.contains(po.needLockedId)) {
+                return index;
+            }
+        }
+        return null;
     }
 
 }
 
-class point {
-    public int x;
-    public int y;
-
-    public point(){};
-
-    public  point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
+class ProcessInfo {
+    public int id;//进程Id
+    public List<Integer> hasLockedId;//已持有锁Id列表
+    public Integer needLockedId;//需要锁Id
 }
 
 
