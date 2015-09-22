@@ -19,31 +19,27 @@ public class LetterMax {
     }
 
     public static int fun(int n, int[] num) {
-        int[] max = new int[n - 2];
+        int letteMax = Integer.MAX_VALUE;
+        int max = 0;
         for (int i = 1; i < n-1; i++) {
             int[] temp = getTemp(i, num);
-            max[i - 1] = getMax(temp);
-        }
-        int letteMax = max[0];
-        for (int i = 1; i < n - 2; i++) {
-            if (max[i] < letteMax) {
-                letteMax = max[i];
+            max = getMax(temp);
+            if (max < letteMax) {
+                letteMax = max;
             }
         }
+
         return letteMax;
     }
 
     //求有序序列的相邻最大间隔
     public static int getMax(int[] temp) {
-        int d[] = new int[temp.length - 1];
+        int max = 0;
+        int diff = 0;
         for (int i = 1; i < temp.length; i++) {
-            d[i - 1] = temp[i] - temp[i - 1];
-        }
-
-        int max = d[0];
-        for (int i = 1; i < d.length; i++) {
-            if (d[i] > max) {
-                max = d[i];
+            diff = temp[i] - temp[i - 1];
+            if (diff > max) {
+                max = diff;
             }
         }
 

@@ -1,142 +1,75 @@
 package test;
 
 /**
- * Created by gang.qin on 2015/9/21.
- * 考点：检测死锁
+ * Created by gang.qin on 2015/9/22.
  */
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        int T = scan.nextInt();
+        for (int i = 0; i < T; i++){
+            int n = scan.nextInt();
+            int[] seq = new int[n];
+            for (int j = 0; j < n; j++) {
+                seq[j] = scan.nextInt();
+            }
+            System.out.println("Case " + (i + 1) + ":");
+            System.out.println(maxSumSeq(n, seq));
+            if (i < T-1) {
+                System.out.println();
+            }
+        }
+    }
 
-        //数据输入
-        int n = Integer.parseInt(scan.nextLine());
-        String line = null;
-        List<ProcessInfo> pos = new ArrayList<ProcessInfo>();
+    // 简单暴力法,穷举序列的子序列，O(n^2)
+    public static String maxSumSequnence(int n, int[] seq) {
+        int max = 0;
+        int sum = 0;
+        int begin = 0;
+        int end = 0;
         for (int i = 0; i < n; i++) {
-            line = scan.nextLine();
-            String[] strs = line.split("\t");
-            ProcessInfo po = new ProcessInfo();
-            po.id = Integer.parseInt(strs[0]);
-            if (!" ".equals(strs[1])) {
-                List hasLockedId = new ArrayList();
-                String[] lockedIds = strs[1].split(" ");
-                for (int j = 0; j < lockedIds.length; j++) {
-                    hasLockedId.add(Integer.parseInt(lockedIds[j]));
-                }
-                po.hasLockedId = hasLockedId;
-            }
-            if (!" ".equals(strs[2])) {
-                po.needLockedId = Integer.parseInt(strs[2]);
-            }
-            pos.add(po);
-        }
-
-        //结果输出
-        System.out.println(lookup(pos));
-    }
-
-    //查找形成死锁的环的个数
-    private static int lookup(List<ProcessInfo> pos) {
-        Set<String> cycle = new HashSet<String>();
-        for (ProcessInfo po : pos) {
-            if (po.needLockedId != null) {
-                String cycleIds = getCycleIds(po, pos);
-                if (cycleIds != null) {
-                    cycle.add(cycleIds);
+            sum = 0;
+            for (int j = i; j < n; j++) {
+                sum = seq[j] + sum;
+                if (sum > max) {
+                    max = sum;
+                    begin = i;
+                    end = j;
                 }
             }
         }
-        return cycle.size();
+        return max + " " + (begin+1) + " " + (end+1);
     }
 
-    //从某个进程开始，若存在死锁，返回形成死锁的进程id列表（按id从小到大排序）
-    private static String getCycleIds(ProcessInfo po, List<ProcessInfo> pos) {
-        List<Integer> ids = new ArrayList<Integer>();
-        ids.add(po.id);
-        ProcessInfo next = getNext(po, pos);
-        while (next != null && po.id != next.id) {
-            ids.add(next.id);
-            next = getNext(next, pos);
-        }
+    //动态规划求解, O(n),
+    public static String maxSumSeq(int n, int[] seq) {
+        int sum = 0;
+        int max = seq[0];
+        int begin = 0;
+        int temp = 0;
+        int end = 0;
 
-        if (next == null) {
-            return null;
-        }
+        for (int i = 0; i < n; i++) {
+            if (sum >= 0) {
+                sum += seq[i];
+            } else {
+                sum = seq[i];
+                temp = i;
+            }
 
-        Collections.sort(ids);
-        for (Integer id : ids) {
-
-        }
-        return ids.toString();
-    }
-
-    //查找某个进程需要的锁id已被哪个经常所持有，返回进程信息，否则返回null
-    private static ProcessInfo getNext(ProcessInfo po, List<ProcessInfo> pos) {
-        for (ProcessInfo index : pos) {
-            List<Integer> hasLockedId = index.hasLockedId;
-            if (hasLockedId != null && hasLockedId.contains(po.needLockedId)) {
-                return index;
+            if (sum > max) {
+                max = sum;
+                begin = temp;
+                end = i;
             }
         }
-        return null;
-    }
 
-}
-
-class ProcessInfo {
-    public int id;//进程Id
-    public List<Integer> hasLockedId;//已持有锁Id列表
-    public Integer needLockedId;//需要锁Id
-}
-
-
-
-/*
-import java.util.Scanner;
-
-public class Main{
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-
-        //获取N
-        int N = scan.nextInt();
-
-        //获取名字列表
-        String[] names = new String[N];
-        for (int i = 0; i < N; i++) {
-            names[i] = scan.next().toLowerCase();
-        }
-
-        //计算每个字母的漂亮度
-        int[] array = getArray(names);
-        System.out.println(getCount(names[0]));
-        for (int i = 1; i < N; i++) {
-            System.out.print(" " + getCount(names[i]));
-        }
-
-
-    }
-
-    private static int[] getArray(String[] names) {
-        int[] array = new int[26];
-        for (int i = 0; i < names.length; i++) {
-            
-        }
-        return new int[0];
-    }
-
-    private static int getCount(String name) {
-
-        return 0;
+        return max + " " + (begin+1) + " " + (end+1);
     }
 }
-
-*/
-
-
 
 /*
 //合唱队
