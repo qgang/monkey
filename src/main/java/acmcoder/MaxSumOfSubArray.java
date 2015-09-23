@@ -52,7 +52,7 @@ public class MaxSumOfSubArray {
         }
     }
 
-    // 简单暴力法,穷举序列的子序列，O(n^2)
+    // 简单暴力法,穷举序列的子序列，O(n^2),提交acmcoder会超时
     public static String maxSumSequnence(int n, int[] seq) {
         int max = 0;
         int sum = 0;
