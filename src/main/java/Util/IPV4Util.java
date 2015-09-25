@@ -104,7 +104,7 @@ public class IPV4Util {
     }
 
     public static void main(String[] args) {
-        System.out.println(iP2Int("0.0.0.0"));
+        System.out.println(iP2Int("10.1.124.196"));
         System.out.println(int2IP(-1062677115));
     }
 }

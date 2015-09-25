@@ -11,4 +11,8 @@ public class UUIDToIntUtil {
         UUID uuid = UUID.fromString(str);
         return uuid.hashCode();
     }
+
+    public static void main(String[] args) {
+        System.out.println(UUID2Int("01b9bb48-0ff3-4406-bdc1-ef7afeb462af"));
+    }
 }
