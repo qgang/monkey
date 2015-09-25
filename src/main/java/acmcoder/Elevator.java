@@ -1,7 +1,7 @@
-package test;
-
+package acmcoder;
 
 /**
+ * Created by gang.qin on 2015/9/25.
  Problem Description
  The highest building in our city has only one elevator. A request list is made up with N positive numbers.
  The numbers denote at which floors the elevator will stop, in specified order.
@@ -28,7 +28,7 @@ package test;
  */
 import java.util.Scanner;
 
-public class Main {
+public class Elevator {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -62,4 +62,3 @@ public class Main {
         return time;
     }
 }
-
