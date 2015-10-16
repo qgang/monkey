@@ -109,8 +109,8 @@ public class SalesTaxes {
     //计算商品税费
     private float countTax(boolean isEempt, boolean isImported, float preTaxPrice) {
         float tax = 0;
-        tax += isEempt ? 0 : preTaxPrice * Code.RATE_TEN;
-        tax += isImported ? preTaxPrice * Code.RATE_FIVE : 0;
+        tax += isEempt ? 0 : Math.round(preTaxPrice * Code.RATE_TEN * 10) / 10.00;
+        tax += isImported ? Math.round(preTaxPrice * Code.RATE_FIVE * 10) / 10.00 : 0;
         return tax;
     }
 
