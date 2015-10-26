@@ -1,5 +1,7 @@
 package Util;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by gang.qin on 2015/9/20.
  */
@@ -23,5 +25,25 @@ public class NumUtil {
      */
     public static int getMin(int x, int y) {
         return x > y ? y : x;
+    }
+
+    /**
+     * 判断一个String是否为整数
+     * @param str
+     * @return
+     */
+    public static boolean isInteger(String str) {
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]+$");
+        return pattern.matcher(str).matches();
+    }
+
+    /**
+     * 判断一个String是否为16进制数
+     * @param str
+     * @return
+     */
+    public static boolean isHex(String str) {
+        Pattern pattern = Pattern.compile("^[\\da-fA-F]+$");
+        return pattern.matcher(str).matches();
     }
 }

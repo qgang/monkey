@@ -1,4 +1,4 @@
-package uuid2int;
+package dper.uuid2int;
 
 import java.io.*;
 

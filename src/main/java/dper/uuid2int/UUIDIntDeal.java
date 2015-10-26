@@ -1,11 +1,9 @@
-package uuid2int;
+package dper.uuid2int;
 
 import base.TextBase;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
