@@ -6,6 +6,7 @@ package concurrency;
  * synchronized 关键字主要确保多个线程在同一时刻，只能有一个线程处于方法或者同步块中
  * 1. 修饰同步块，使用monitorenter、monitorexit这两个指令实现Synchronized
  * 2. 修饰方法，使用ACC_SYNCHRONIZED 修饰符实现Synchronized
+ * 两种方式都是对一个监视器（monitor）进行获取
  */
 public class Synchronized {
     public static void main(String[] args) {
