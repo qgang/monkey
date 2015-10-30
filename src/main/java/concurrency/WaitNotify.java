@@ -15,6 +15,32 @@ import java.util.Date;
  * 3. notify() notifyAll() 方法调用后，等待线程不会从 wait() 返回，需要调用 notify() notifyAll() 的线程释放锁之后，等待线程才有机会从 wait() 返回。
  * 4. notify() 方法将等待队列中的一个等待线程移动到同步队列中。notifyAll() 是将等待队列中的所有线程移动到同步队列。
  * 5. 从 wait() 方法中返回的前提是获得了调用对象的锁
+ *
+ *
+ * 等待/通知 经典范式
+ * 该范式分为两部分，分别针对等待方（消费者）和通知方（生产者）
+ *
+ * 等待方规则如下：
+ * 1. 获取对象锁
+ * 2. 如果条件不满足，那么调用对象的 wait() 方法， 被通知后仍要检查条件
+ * 3. 条件满足则执行对应的逻辑
+ *
+ * synchronized( object ) {
+ *     while ( false ) {
+ *         object.wait();
+ *     }
+ *     dosomething
+ * }
+ *
+ * 通知方的规则如下：
+ * 1. 获取对象的锁
+ * 2. 改变条件
+ * 3. 通知所有等待在对象上的线程
+ *
+ * synchronized( object) {
+ *     change condition
+ *     object.notifyAll();
+ * }
  */
 public class WaitNotify {
     static boolean flag = true;
