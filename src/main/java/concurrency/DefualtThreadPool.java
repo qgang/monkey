@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by gang,.qin on 2015/11/5.
  */
-public class DefualtThreadPool {
+public class DefualtThreadPool<Job extends Runnable> implements ThreadPool<Job>{
     // 线程池最大限制数
     private static final int MAX_WORKER_NUMBERS = 10;
 
@@ -20,7 +20,7 @@ public class DefualtThreadPool {
     private static final int MIN_WORKER_NUMBERS = 1;
 
     // 这是一个工作列表，将会向里面插入工作
-    private static final LinkedList<Priority.Job> jobs = new LinkedList<Priority.Job>();
+    private final LinkedList<Job> jobs = new LinkedList<Job>();
 
     // 工作者列表
     private final List<Worker> workers = Collections.synchronizedList(new ArrayList<Worker>());
@@ -40,7 +40,7 @@ public class DefualtThreadPool {
         initializeWorkers(num);
     }
 
-    public void execute (Priority.Job job) {
+    public void execute (Job job) {
         if (job != null) {
             // 添加一个工作，然后进行通知
             synchronized (jobs) {
@@ -56,7 +56,7 @@ public class DefualtThreadPool {
         }
     }
 
-    public void addWorker (int num) {
+    public void addWorkers (int num) {
         synchronized (jobs) {
             // 限制新增加的 Worker 数量不能超过最大值
             if (num + workers.size() > MAX_WORKER_NUMBERS) {
@@ -105,7 +105,7 @@ public class DefualtThreadPool {
         private volatile boolean running = true;
         public void run () {
             while (running) {
-                Priority.Job job = null;
+                Job job = null;
                 synchronized (jobs) {
                     // 如果工作者列表是控的，那么就 wait
                     while (jobs.isEmpty()) {
