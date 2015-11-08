@@ -73,7 +73,7 @@ public class DefualtThreadPool <Job extends Runnable> implements ThreadPool<Job>
                 throw new IllegalArgumentException("beyond worker num");
             }
 
-            // 安装给定的数量停止 Worker
+            // 按照给定的数量停止 Worker
             int count = 0;
             while (count < num) {
                 Worker worker = workers.get(count);
@@ -107,7 +107,7 @@ public class DefualtThreadPool <Job extends Runnable> implements ThreadPool<Job>
             while (running) {
                 Job job = null;
                 synchronized (jobs) {
-                    // 如果工作者列表是控的，那么就 wait
+                    // 如果工作列表是控的，那么就 wait
                     while (jobs.isEmpty()) {
                         try {
                             jobs.wait();

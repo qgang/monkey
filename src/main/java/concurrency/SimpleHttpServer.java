@@ -6,6 +6,9 @@ import java.net.Socket;
 
 /**
  * Created by gang.qin on 2015/11/7.
+ * 一个基于线程池技术的简单 Web 服务器
+ * 1. 用于处理 HTTP 请求，目前只能处理简单的文本和 JPG 图片内容
+ * 2. 使用 main 线程不断的接受客户端 Socket 的连接，将连接及请求提交给线程池处理
  */
 public class SimpleHttpServer {
     // 处理 httpRequest 的线程池
