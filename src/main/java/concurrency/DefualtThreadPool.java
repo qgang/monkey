@@ -20,7 +20,7 @@ public class DefualtThreadPool <Job extends Runnable> implements ThreadPool<Job>
     private static final int MIN_WORKER_NUMBERS = 1;
 
     // 这是一个工作列表，将会向里面插入工作
-    private static final LinkedList<Job> jobs = new LinkedList<Job>();
+    private final LinkedList<Job> jobs = new LinkedList<Job>();
 
     // 工作者列表
     private final List<Worker> workers = Collections.synchronizedList(new ArrayList<Worker>());
@@ -56,7 +56,7 @@ public class DefualtThreadPool <Job extends Runnable> implements ThreadPool<Job>
         }
     }
 
-    public void addWorker (int num) {
+    public void addWorkers (int num) {
         synchronized (jobs) {
             // 限制新增加的 Worker 数量不能超过最大值
             if (num + workers.size() > MAX_WORKER_NUMBERS) {
