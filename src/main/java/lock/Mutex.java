@@ -53,7 +53,7 @@ public class Mutex implements Lock{
         return sync.tryAcquire(1);
     }
 
-    public void unLock () {
+    public void unlock () {
         sync.release(1);
     }
 
@@ -72,7 +72,7 @@ public class Mutex implements Lock{
     public  void lockInterruptibly () throws InterruptedException {
         sync.acquireInterruptibly(1);
     }
-    
+
     public boolean tryLock (long timeout, TimeUnit unit) throws InterruptedException {
         return sync.tryAcquireNanos(1, unit.toNanos(timeout));
     }
