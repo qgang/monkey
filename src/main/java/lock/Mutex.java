@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Lock;
 
 /**
  * Created by gang.qin on 2015/11/13.
- * 自定义同步组件
+ * 自定义同步组件，（非重入锁）
  */
 public class Mutex implements Lock{
     // 静态内部类，自定义同步器
@@ -19,7 +19,7 @@ public class Mutex implements Lock{
 
         // 当状态为0的时候获取锁
         public boolean tryAcquire (int acquires) {
-            if (compareAndSetState(0, 1)) {
+            if (compareAndSetState(0, 1)) { // 非重入，相同线程再次进入会被自己阻塞
                 setExclusiveOwnerThread(Thread.currentThread());
                 return true;
             }
