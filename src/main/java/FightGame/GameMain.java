@@ -1,5 +1,11 @@
 package FightGame;
 
+import FightGame.entity.Defense;
+import FightGame.entity.Player;
+import FightGame.entity.Role;
+import FightGame.entity.Weapon;
+import FightGame.util.Constant;
+
 /**
  * Created by gang.qin on 2015/12/1.
  */

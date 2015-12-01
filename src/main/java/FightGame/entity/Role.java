@@ -1,15 +1,15 @@
-package FightGame;
+package FightGame.entity;
 
 /**
  * Created by gang.qin on 2015/12/1.
  */
-public class Weapon {
+public class Role {
     private String name;
-    private int atk;
+    private int type;
 
-    public Weapon(String name, int atk) {
+    public Role (String name, int type) {
         this.name = name;
-        this.atk = atk;
+        this.type = type;
     }
 
     public String getName() {
@@ -20,11 +20,11 @@ public class Weapon {
         this.name = name;
     }
 
-    public int getAtk() {
-        return atk;
+    public int getType() {
+        return type;
     }
 
-    public void setAtk(int atk) {
-        this.atk = atk;
+    public void setType(int type) {
+        this.type = type;
     }
 }

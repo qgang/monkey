@@ -1,4 +1,4 @@
-package FightGame;
+package FightGame.util;
 
 /**
  * Created by gang.qin on 2015/12/1.

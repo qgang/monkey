@@ -1,4 +1,7 @@
-package FightGame;
+package FightGame.entity;
+
+import FightGame.util.Constant;
+import FightGame.util.IllegalRoleException;
 
 /**
  * Created by gang.qin on 2015/12/1.
@@ -63,7 +66,7 @@ public class Player {
         return weapon;
     }
 
-    public void setWeapon(Weapon weapon) throws IllegalRoleException{
+    public void setWeapon(Weapon weapon) throws IllegalRoleException {
         if (role != null && role.getType() == Constant.ROLE_TYPE_SOLDIER) {
             this.weapon = weapon;
         } else {
