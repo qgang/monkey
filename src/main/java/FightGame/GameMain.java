@@ -15,12 +15,12 @@ public class GameMain {
     public static Player fight(Player a, Player b) {
         while (true) {
             b.setBloodValue(b.getBloodValue() - a.getAtk()); // a 攻击 b
-            if (isDead(a)) {
-                return a;
-            }
-            a.setBloodValue(a.getBloodValue() - b.getAtk()); // b 攻击 a
             if (isDead(b)) {
                 return b;
+            }
+            a.setBloodValue(a.getBloodValue() - b.getAtk()); // b 攻击 a
+            if (isDead(a)) {
+                return a;
             }
         }
     }
