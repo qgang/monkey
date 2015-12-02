@@ -14,7 +14,8 @@ public class Constant {
 
     // 武器常量
     public static final String WEAPON_STICKS = "优质木棍";
+    public static final String WEAPON_SWORD = "优质毒剑";
 
     // 防具常量
-    public static final String DEFENSE_ARMOR = "铠甲";
+    public static final String ARMOR_ARMOR = "铠甲";
 }
