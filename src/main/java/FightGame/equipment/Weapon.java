@@ -16,6 +16,10 @@ public class Weapon {
         this.atk = atk;
     }
 
+    public String useWeapon() {
+        return "用" + name;
+    }
+
     public String getName() {
         return name;
     }

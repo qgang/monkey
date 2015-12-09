@@ -12,6 +12,10 @@ public class Armor {
         this.defenseVaule = defenseVaule;
     }
 
+    public String useArmor () {
+        return String.format( "用%s防御", name );
+    }
+
     public String getName() {
         return name;
     }

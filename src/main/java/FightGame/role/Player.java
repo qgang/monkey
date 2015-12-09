@@ -5,7 +5,7 @@ package FightGame.role;
  * 玩家
  */
 public class Player {
-    protected int bloodValue; // 血值
+    protected int bloodValue = 100; // 血值
     protected int atk; // 攻击力 大于0
     protected String name; // 名字
     protected int beHurtValue; // 被伤害
@@ -31,8 +31,10 @@ public class Player {
 
     public String getFightStr (Player victim) {
         return String.format("%s攻击了%s,%s受到了%d点伤害，%s剩余生命：%d",
-                name,victim.getName(),victim.getName(),atk,victim.getName());
+                name,victim.getName(),victim.getName(),atk,victim.name,victim.bloodValue);
     }
+
+
 
     public int getBloodValue() {
         return bloodValue;

@@ -38,7 +38,7 @@ public class Soldier extends Player{
                 sb.append(String.format("%s用%s防御了%s,", s.getName(), s.getArmor().getName(), name));
             }
         }
-        sb.append(String.format("%s受到了%d点伤害，%s剩余生命：%d", name, beHurtValue, bloodValue));
+        sb.append(String.format("%s受到了%d点伤害，%s剩余生命：%d", name, beHurtValue, victim.getName(),bloodValue));
         return sb.toString();
     }
 
