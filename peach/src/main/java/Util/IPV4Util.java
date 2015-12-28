@@ -22,9 +22,9 @@ public class IPV4Util {
     }
 
     /**
-     * 获取本机IP,多网卡
+     * 获取本机第一个IPv4地址,多网卡
      */
-    private static String getLocalIpAddress(){
+    private static String getLocalIpv4Address(){
         String localIpAddress = "0.0.0.0";
         Enumeration<NetworkInterface> networkInterfaces = null;
         try {

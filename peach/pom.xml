@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>monkey</artifactId>
+        <groupId>com.steel</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.steel.peach</groupId>
+    <artifactId>peach</artifactId>
+    <name>peach</name>
+    <version>${project.version}</version>
+    <packaging>war</packaging>
+
+    <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+      <finalName>${artifactId}-${env}-{version}</finalName>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>2.5</version>
+              <configuration>
+                  <encoding>UTF-8</encoding>
+              </configuration>
+          </plugin>
+          <!--
+          <plugin>
+              <artifactId>maven-assembly-plugin</artifactId>
+              <version>2.5</version>
+              <configuration>
+                  <appendAssemblyId>false</appendAssemblyId>
+                  <archive>
+                      <manifest>
+                          <mainClass>...</mainClass>
+                          <addClasspath>true</addClasspath>
+                      </manifest>
+                  </archive>
+                  <descriptors>
+                      <descriptor>src/main/assembly/assembly.xml</descriptor>
+                  </descriptors>
+              </configuration>
+
+              <executions>
+                  <execution>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>single</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin>
+          -->
+      </plugins>
+      <!--
+      <filters>
+          <filter>src/main/filters/filter-${env}.properties</filter>
+      </filters>
+
+      <resources>
+          <resource>
+              <directory>src/main/resources</directory>
+              <filtering>true</filtering>
+          </resource>
+      </resources>
+      -->
+    </build>
+</project>
