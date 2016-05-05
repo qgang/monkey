@@ -1,12 +1,12 @@
 package test;
 
-import java.util.Random;
+import com.google.gson.Gson;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Random random = new Random();
-        Math.random();
-        System.out.println(random.nextInt());
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(Arrays.asList(67360)));
     }
 }
 
