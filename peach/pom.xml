@@ -24,6 +24,17 @@
             <artifactId>commons-email</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.wltea.ik-analyzer</groupId>
+            <artifactId>ik-analyzer</artifactId>
+            <version>3.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>3.0.3</version>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
