@@ -20,6 +20,7 @@
     <modules>
         <module>crontab</module>
         <module>peach</module>
+        <module>nettyaction</module>
     </modules>
 
     <dependencies>
