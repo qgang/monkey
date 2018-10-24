@@ -21,6 +21,7 @@
         <module>crontab</module>
         <module>peach</module>
         <module>nettyaction</module>
+        <module>myservlet</module>
     </modules>
 
     <dependencies>
