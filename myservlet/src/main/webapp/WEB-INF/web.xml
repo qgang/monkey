@@ -136,4 +136,13 @@
     <session-config>
         <session-timeout>1</session-timeout> <!--单位分-->
     </session-config>
+
+    <servlet>
+        <servlet-name>UploadFile</servlet-name>
+        <servlet-class>com.steel.servlet.UploadFile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadFile</servlet-name>
+        <url-pattern>/UploadFile</url-pattern>
+    </servlet-mapping>
 </web-app>
