@@ -145,4 +145,39 @@
         <servlet-name>UploadFile</servlet-name>
         <url-pattern>/UploadFile</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PageRedirect</servlet-name>
+        <servlet-class>com.steel.servlet.PageRedirect</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>PageRedirect</servlet-name>
+        <url-pattern>/PageRedirect</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PageHitCounter</servlet-name>
+        <servlet-class>com.steel.servlet.PageHitCounter</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PageHitCounter</servlet-name>
+        <url-pattern>/PageHitCounter</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SendEmail</servlet-name>
+        <servlet-class>com.steel.servlet.SendEmail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendEmail</servlet-name>
+        <url-pattern>/SendEmail</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetLocale</servlet-name>
+        <servlet-class>com.steel.servlet.GetLocale</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetLocale</servlet-name>
+        <url-pattern>/GetLocale</url-pattern>
+    </servlet-mapping>
+
 </web-app>
