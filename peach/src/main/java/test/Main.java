@@ -1,15 +1,10 @@
 package test;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
-        int a = Integer.MAX_VALUE;
+        String s = null;
 
-        System.out.println(BigDecimal.valueOf(a * a));
-        System.out.println(BigDecimal.valueOf((long)a * a));
+        System.out.println("ss:" + s);
     }
 }
 
