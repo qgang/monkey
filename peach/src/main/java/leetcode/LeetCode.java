@@ -7,10 +7,10 @@ package leetcode;
 public class LeetCode {
 
     public static void main(String[] args) {
-        int[] nums = {-3,3,4,90};
-        int target = 0;
-        TwoSum s = new TwoSum();
-        int[] result = s.twoSum(nums, target);
+        int x = -2147483645;
+        HammingWeight s = new HammingWeight();
+        int result = s.hammingWeight(x);
+        int result2 = s.hammingWeight2(x);
         return;
     }
 }
