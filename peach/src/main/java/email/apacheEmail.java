@@ -13,7 +13,7 @@ public class apacheEmail {
     private static final String receivers = "1179135080@qq.com";
     private static final String title = "test apache email";
     private static final String userName = "steel@qq.com";
-    private static final String password = "Qin@0903gang";
+    private static final String password = "***";
 
 
     public static void send() {
